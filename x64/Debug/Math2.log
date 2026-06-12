@@ -1,7 +1,0 @@
-﻿  main.cpp
-C:\Users\razian-4-local\Desktop\Math_assignment_2-main\Math2\mat4.h(131,1): warning C4715: 'mat4::operator[]': not all control paths return a value
-C:\Users\razian-4-local\Desktop\Math_assignment_2-main\Math2\vec4.h(136,1): warning C4715: 'vec4::operator[]': not all control paths return a value
-C:\Users\razian-4-local\Desktop\Math_assignment_2-main\Math2\vec4.h(128,1): warning C4715: 'vec4::operator[]': not all control paths return a value
-C:\Users\razian-4-local\Desktop\Math_assignment_2-main\Math2\mat4.h(123,1): warning C4715: 'mat4::operator[]': not all control paths return a value
-C:\Users\razian-4-local\Desktop\Math_assignment_2-main\Math2\vec3.h(116,1): warning C4715: 'vec3::operator[]': not all control paths return a value
-  Math2.vcxproj -> C:\Users\razian-4-local\Desktop\Math_assignment_2-main\x64\Debug\Math2.exe
