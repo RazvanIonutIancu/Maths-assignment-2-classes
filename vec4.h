@@ -98,6 +98,7 @@ public:
 		this->x *= scalar;
 		this->y *= scalar;
 		this->z *= scalar;
+		this->w *= scalar;
 		return *this;
 	}
 

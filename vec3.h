@@ -110,18 +110,9 @@ public:
 
 	float operator[](const int i)
 	{
-		if (i == 0)
-		{
-			return this->x;
-		} 
-		else if (i == 1)
-		{
-			return this->y;
-		} 
-		else if (i == 2)
-		{
-			return this->z;
-		}
+		if (i == 0) return this->x;
+		if (i == 1) return this->y;
+		if (i == 2) return this->z;
 	}
 
 	const float& operator[](const int i) const

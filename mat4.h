@@ -50,20 +50,21 @@ public:
 	mat4 operator*(const mat4& rhs) const
 	{
 		mat4 result;
+
+
 		for (int i = 0; i < 4; i++)
 		{
 			for (int j = 0; j < 4; j++)
 			{
 				result.m[i][j] =
-					this->m[i][0] * rhs.m[0][j]
-					+ this->m[i][1] * rhs.m[1][j]
-					+ this->m[i][2] * rhs.m[2][j]
-					+ this->m[i][3] * rhs.m[3][j];
-
-
-
+					this->m[0][j] * rhs.m[i][0] +
+					this->m[1][j] * rhs.m[i][1] +
+					this->m[2][j] * rhs.m[i][2] +
+					this->m[3][j] * rhs.m[i][3];
 			}
 		}
+
+
 
 		return result;
 
@@ -73,10 +74,9 @@ public:
 	{
 		vec4 result;
 
-		for (int i = 0; i < 4; i++)
-		{
-			result[i] = dot(this->m[i], rhs);
-		}
+		
+		result = m[0] * rhs.x + m[1] * rhs.y + m[2] * rhs.z + m[3] * rhs.w;
+
 
 		return result;
 	}
@@ -220,8 +220,8 @@ mat4 rotationx(const float rad)
 	float cosine = cos(rad);
 
 	return mat4{ vec4{1, 0, 0, 0},
-				 vec4{0, cosine, -sine, 0},
-				 vec4{0, sine, cosine, 0},
+				 vec4{0, cosine, sine, 0},
+				 vec4{0, -sine, cosine, 0},
 				 vec4{0, 0, 0, 1} };
 }
 
@@ -230,9 +230,9 @@ mat4 rotationy(const float rad)
 	float sine = sin(rad);
 	float cosine = cos(rad);
 
-	return mat4{ vec4{cosine, 0, sine, 0},
+	return mat4{ vec4{cosine, 0, -sine, 0},
 				 vec4{0, 1, 0, 0},
-				 vec4{-sine, 0, cosine, 0},
+				 vec4{sine, 0, cosine, 0},
 				 vec4{0, 0, 0, 1} };
 }
 
@@ -241,8 +241,8 @@ mat4 rotationz(const float rad)
 	float sine = sin(rad);
 	float cosine = cos(rad);
 
-	return mat4{ vec4{cosine, -sine, 0, 0},
-				 vec4{sine, cosine, 0, 0},
+	return mat4{ vec4{cosine, sine, 0, 0},
+				 vec4{-sine, cosine, 0, 0},
 				 vec4{0, 0, 1, 0},
 				 vec4{0, 0, 0, 1} };
 }
@@ -261,9 +261,10 @@ mat4 rotationaxis(const vec3& v, const float rad)
 	float z = newAxis.z;
 
 	// Rodriguez formula
-	return mat4{ vec4{ cosine + oneMinusC * x * x, oneMinusC * x * y - sine * z, oneMinusC * x * z + sine * y, 0},
-				 vec4{ oneMinusC * x * y + sine * z, cosine + oneMinusC * y * y, oneMinusC * y * z - sine * x, 0},
-				 vec4{ oneMinusC * x * z - sine * y, oneMinusC * y * z + sine * x, cosine + oneMinusC * z * z, 0},
+	return mat4{
+				 vec4{cosine + oneMinusC * x * x, oneMinusC * x * y + sine * z, oneMinusC * x * z - sine * y, 0},
+				 vec4{ oneMinusC * x * y - sine * z, cosine + oneMinusC * y * y, oneMinusC * y * z + sine * x, 0},
+				 vec4{ oneMinusC * x * z + sine * y, oneMinusC * y * z - sine * x, cosine + oneMinusC * z * z, 0},
 				 vec4{0, 0, 0, 1}
 	};
 
